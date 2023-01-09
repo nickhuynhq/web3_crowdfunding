@@ -5,7 +5,7 @@ import { navlinks } from "../constants";
 
 const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => (
   <div
-    className={`w-[48px] h-[48px] rounded-[10px] ${
+    className={`w-[48px] h-[48px] rounded-[10px] hover:bg-[#2c2f32] transition duration-300 ${
       isActive && isActive === name && "bg-[#2c2f32]"
     } flex justify-center items-center ${
       !disabled && "cursor-pointer"
