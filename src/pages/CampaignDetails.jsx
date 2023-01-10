@@ -21,7 +21,7 @@ const CampaignDetails = () => {
     <div>
       {isLoading && "Loading..."}
 
-      <div className="w-full flex md:flex-row flex-col mt-10 gap-30">
+      <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
           <img
             src={state.image}
