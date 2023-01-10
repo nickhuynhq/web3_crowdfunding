@@ -5,6 +5,7 @@ import {
   useContract,
   useMetamask,
   useContractWrite,
+  useDisconnect,
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 
@@ -24,6 +25,9 @@ export const StateContextProvider = ({ children }) => {
 
   // Connect to smart wallet
   const connect = useMetamask();
+
+  // Disconnect to smart wallet
+  const disconnect = useDisconnect();
 
   const publishCampaign = async (form) => {
     try {
@@ -77,6 +81,7 @@ export const StateContextProvider = ({ children }) => {
         address,
         contract,
         connect,
+        disconnect,
         createCampaign: publishCampaign,
         getCampaigns,
         getUserCampaigns,
