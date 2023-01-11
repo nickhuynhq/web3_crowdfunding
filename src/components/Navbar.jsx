@@ -4,13 +4,13 @@ import { CustomButton } from "./";
 import { logo, menu, search, thirdweb } from "../assets";
 import { navlinks } from "../constants";
 import { useStateContext } from "../context";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const {connect, address} = useStateContext();
-
+  const { connect, address } = useStateContext();
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -33,10 +33,22 @@ const Navbar = () => {
         <CustomButton
           btnType="button"
           title={address ? "Create a campaign" : "Connect"}
-          styles={address ? "bg-[#1dc071] hover:bg-[#008946]" : "bg-[#8c6dfd] hover:bg-[#6550b5]"}
+          styles={
+            address
+              ? "bg-[#1dc071] hover:bg-[#008946]"
+              : "bg-[#8c6dfd] hover:bg-[#6550b5]"
+          }
           handleClick={() => {
             if (address) navigate("create-campaign");
-            else connect();
+            else {
+              try {
+                connect();
+                toast.success("Wallet connected successfully! 🥳");
+              } catch (error) {
+                toast.error("Connection Error.");
+                console.log(error);
+              }
+            }
           }}
         />
         <Link to="/profile">
@@ -66,7 +78,9 @@ const Navbar = () => {
           onClick={() => setToggleDrawer((toggleDrawer) => !toggleDrawer)}
         />
         <div
-          className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${!toggleDrawer ? "-translate-y-[100vh]" : "transalte-y-0"} transition-all duration-700`}
+          className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${
+            !toggleDrawer ? "-translate-y-[100vh]" : "transalte-y-0"
+          } transition-all duration-700`}
         >
           <ul className="mb-4">
             {navlinks.map((link) => (

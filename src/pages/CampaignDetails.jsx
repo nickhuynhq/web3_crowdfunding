@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { ethers } from "ethers";
+import { useLocation } from "react-router-dom";
 
 import { useStateContext } from "../context";
 import { CountBox, CustomButton, Loader } from "../components";
@@ -9,19 +8,20 @@ import { thirdweb } from "../assets";
 
 const CampaignDetails = () => {
   const { state } = useLocation();
-  const navigate = useNavigate();
-  const { donate, getDonations, contract, address } = useStateContext();
+  const { donate, getUserCampaigns, getDonations, contract, address } = useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState("");
   const [donators, setDonators] = useState([]);
+  const [userCampaigns, setUserCampaigns] = useState(0);
 
   const remainingDays = daysLeft(state.deadline);
 
-  const fetchDonators = async () => {
-    const data = await getDonations(state.pId);
-
-    setDonators(data);
+  const fetchData = async () => {
+    const donations = await getDonations(state.pId);
+    const userCampaignsData = await getUserCampaigns(state.owner);
+    setDonators(donations);
+    setUserCampaigns(userCampaignsData.length)
   };
 
   const handleDonate = async () => {
@@ -31,7 +31,7 @@ const CampaignDetails = () => {
   };
 
   useEffect(() => {
-    if (contract) fetchDonators();
+    if (contract) fetchData();
   }, [contract, address]);
 
   return (
@@ -91,7 +91,7 @@ const CampaignDetails = () => {
                   {state.owner}
                 </h4>
                 <p className="mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]">
-                  10 Campaigns
+                  {`${userCampaigns} ${userCampaigns === 1 ? `Campaign` : `Campaigns`}`}
                 </p>
               </div>
             </div>
