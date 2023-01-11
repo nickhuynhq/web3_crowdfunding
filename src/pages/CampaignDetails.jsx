@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 
 import { useStateContext } from "../context";
@@ -9,6 +9,7 @@ import { thirdweb } from "../assets";
 
 const CampaignDetails = () => {
   const { state } = useLocation();
+  const navigate = useNavigate();
   const { donate, getDonations, contract, address } = useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -25,9 +26,7 @@ const CampaignDetails = () => {
 
   const handleDonate = async () => {
     setIsLoading(true);
-
     await donate(state.pId, amount);
-
     setIsLoading(false);
   };
 
@@ -46,9 +45,12 @@ const CampaignDetails = () => {
             alt="campaign"
             className="w-full h-[410px] object-cover rounded-xl"
           />
-          <div className="relative w-full h-[5px] bg-[#3a3a43] mt-2">
+          <h4 className="font-epilogue font-semibold text-[12px] text-white uppercase mt-[12px]">{`Progress (${calculateBarPercentage(
+                  state.target,
+                  state.amountCollected)}%)`}</h4>
+          <div className="relative w-full h-[16px] bg-[#3a3a43] mt-2 rounded-md">
             <div
-              className="abosolute h-full bg-[#4acd8d]"
+              className="abosolute h-full bg-[#4acd8d] rounded-md"
               style={{
                 width: `${calculateBarPercentage(
                   state.target,

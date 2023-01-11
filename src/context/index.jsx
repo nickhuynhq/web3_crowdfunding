@@ -1,4 +1,5 @@
 import React, { useContext, createContext } from "react";
+import toast from 'react-hot-toast';
 
 import {
   useAddress,
@@ -8,10 +9,14 @@ import {
   useDisconnect,
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
+import { useNavigate } from "react-router-dom";
 
 const StateContext = createContext();
 
+
 export const StateContextProvider = ({ children }) => {
+  const navigate = useNavigate();
+  
   // Connect with smart contract
   const { contract } = useContract(`${import.meta.env.VITE_CONTRACT_ADDRESS}`);
 
@@ -39,9 +44,11 @@ export const StateContextProvider = ({ children }) => {
         new Date(form.deadline).getTime(), // deadline
         form.image,
       ]);
-
+      
+      toast.success("Campaign published successfully! 🎉")
       console.log("Contract Call Success");
     } catch (error) {
+      toast.error("Unable to process campaign. Please try again later.")
       console.log("Contract Call Failure", error);
     }
   };
@@ -76,11 +83,24 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const donate = async (pId, amount) => {
-    const data = await contract.call("donateToCampaign", pId, {
-      value: ethers.utils.parseEther(amount),
-    });
 
-    return data;
+    try {
+      const data = await contract.call("donateToCampaign", pId, {
+        value: ethers.utils.parseEther(amount),
+      });
+      toast.success("Transaction processed successfully! 🎉")
+      navigate('/')
+      return data;
+      
+    } catch (error) {
+      if(error.reason.includes("insufficient")){
+        toast.error("Insufficient Funds")
+      } else {
+        toast.error("Unable to make transaction, please try again later.")
+      }
+      console.log(error.reason)
+      return error.reason
+    }
   };
 
   const getDonations = async (pId) => {
