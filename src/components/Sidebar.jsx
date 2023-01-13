@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logo, sun, logout } from "../assets";
+import { sun, logout, crowded } from "../assets";
 import { navlinks } from "../constants";
 import { useStateContext } from "../context";
 
@@ -31,11 +31,12 @@ const Sidebar = () => {
   const { disconnect, address } = useStateContext();
 
   return (
-    <div className="flex justify-between items-center flex-col sticky top-5 h-[93vh]">
-      <Link to="/">
-        <Icon styles="w-[52px] h-[52px] bg-[#2c2f32]" imgUrl={logo} />
+    <div className="flex justify-between flex-col sticky top-5 h-[93vh]">
+      <Link className="flex items-center gap-5 ml-4 hover:scale-105 transition duration-300" to="/">
+        <Icon styles="w-[52px] h-[52px] bg-[#2c2f32]" imgUrl={crowded} />
+        <h1 className="font-epilogue font-bold text-[22px] text-white">Crowd3D</h1>
       </Link>
-      <div className="flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-[20px] w-[76px] py-4 mt-12">
+      <div className="flex-1 flex flex-col justify-between items-center bg-[#1c1c24] rounded-[20px] w-[76px] py-4 ml-2 mt-12">
         <div className="flex flex-col justify-center items-center gap-3">
           {navlinks.map((link) => (
             <Icon
