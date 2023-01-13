@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { CampaignDetails, CreateCampaign, Home, NoPageFound, Profile } from './pages'
+import { CampaignDetails, ComingSoon, CreateCampaign, Home, NoPageFound, Profile } from './pages'
 import { Sidebar, Navbar } from './components'
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -19,6 +19,7 @@ const App = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/create-campaign" element={<CreateCampaign />} />
             <Route path="/campaign-details/:id" element={<CampaignDetails />} />
+            <Route path="/coming-soon" element={<ComingSoon />} />
             <Route path="*" element={<NoPageFound />} />
           </Routes>
       </div>

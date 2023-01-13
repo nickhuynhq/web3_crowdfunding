@@ -3,3 +3,4 @@ export {default as Profile} from './Profile';
 export {default as CreateCampaign} from './CreateCampaign';
 export {default as CampaignDetails} from './CampaignDetails';
 export {default as NoPageFound} from './NoPageFound';
+export {default as ComingSoon} from './ComingSoon';

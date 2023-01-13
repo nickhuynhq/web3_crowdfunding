@@ -6,7 +6,7 @@ const NoPageFound = () => {
       <h1 className="font-epilogue font-bold sm:text-[32px] md:text-[64px] leading-[38px] text-white">
         404
       </h1>
-      <h2 className="font-epilogue font-bold sm:text-[12px] md:text-[18px] mt-[16px] text-white">
+      <h2 className="font-epilogue font-bold sm:text-[12px] md:text-[18px] mt-[22px] text-white">
         Sorry, the page you are looking for does not exist.
       </h2>
     </div>
