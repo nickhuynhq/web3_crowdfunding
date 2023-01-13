@@ -4,7 +4,7 @@ import { useStateContext } from "../context";
 import { DisplayCampaigns } from "../components";
 
 const Home = ({ searchInput }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [campaigns, setCampaigns] = useState([]);
 
   const { address, contract, getCampaigns, getSearchCampaigns } =

@@ -9,7 +9,7 @@ import {
   Profile,
 } from "./pages";
 import { Sidebar, Navbar } from "./components";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const [searchInput, setSearchInput] = useState("");
