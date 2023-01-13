@@ -6,28 +6,38 @@ import { navlinks } from "../constants";
 import { useStateContext } from "../context";
 import toast from "react-hot-toast";
 
-const Navbar = () => {
+const Navbar = ({searchInput, setSearchInput}) => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const { connect, address } = useStateContext();
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.search.value)
+    e.target.search.value = ""
+  };
+
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
-      <div className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px] hover:bg-[#2c2f32] transition duration-300">
+      <form
+        className="lg:flex-1 flex flex-row max-w-[458px] py-2 pl-4 pr-2 h-[52px] bg-[#1c1c24] rounded-[100px] hover:bg-[#2c2f32] transition duration-300"
+        onSubmit={handleSearch}
+      >
         <input
           type="text"
+          name="search"
           placeholder="Search for Campaigns"
           className="flex w-full font-epilogue font-normal text-[14px] placeholder:text=[#4b5264] text-white bg-transparent outline-none "
         />
-        <div className="w-[72px] h-full rounded-[20px] bg-[#1dc071] hover:bg-[#008946] transition duration-300 flex justify-center items-center cursor-pointer">
+        <button className="w-[72px] h-full rounded-[20px] bg-[#1dc071] hover:bg-[#008946] transition duration-300 flex justify-center items-center cursor-pointer">
           <img
             src={search}
             alt="search"
             className="w-[15px] h-[15px] object-contain"
           />
-        </div>
-      </div>
+        </button>
+      </form>
 
       <div className="sm:flex hidden flex-row justify-end gap-4 items-center">
         <CustomButton

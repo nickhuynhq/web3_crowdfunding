@@ -82,6 +82,16 @@ export const StateContextProvider = ({ children }) => {
     return filteredCampaigns;
   };
 
+  const getSearchCampaigns = async (searchInput) => {
+    const allCampaigns = await getCampaigns();
+
+    const filteredCampaigns = allCampaigns.filter(
+      (campaign) => campaign.description.toLowerCase().includes(searchInput.toLowerCase()) || campaign.title.toLowerCase().includes(searchInput.toLowerCase())
+    );
+
+    return filteredCampaigns;
+  };
+
   const donate = async (pId, amount) => {
 
     try {
@@ -132,6 +142,7 @@ export const StateContextProvider = ({ children }) => {
         createCampaign: publishCampaign,
         getCampaigns,
         getUserCampaigns,
+        getSearchCampaigns,
         donate,
         getDonations,
       }}

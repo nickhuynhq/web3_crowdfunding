@@ -3,22 +3,28 @@ import { useStateContext } from "../context";
 
 import { DisplayCampaigns } from "../components";
 
-const Home = () => {
+const Home = ({ searchInput }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
 
-  const { address, contract, getCampaigns } = useStateContext();
+  const { address, contract, getCampaigns, getSearchCampaigns } =
+    useStateContext();
 
-  const fetchCampaigns = async () => {
+  const fetchCampaigns = async (searchInput) => {
+    let data = [];
     setIsLoading(true);
-    const data = await getCampaigns();
+    if (!searchInput) {
+      data = await getCampaigns();
+    } else {
+      data = await getSearchCampaigns(searchInput);
+    }
     setCampaigns(data);
     setIsLoading(false);
   };
 
   useEffect(() => {
-    if (contract) fetchCampaigns();
-  }, [address, contract]);
+    if (contract) fetchCampaigns(searchInput);
+  }, [address, contract, searchInput]);
 
   return (
     <div>
