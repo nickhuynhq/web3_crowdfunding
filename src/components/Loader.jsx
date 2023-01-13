@@ -1,7 +1,7 @@
 import React from "react";
 import { loader } from "../assets";
 
-const Loader = () => {
+const Loader = ({text}) => {
   return (
     <div className="fixed inset-0 z-10 h-screen bg-[rgba(0,0,0,0.7)] flex items-center justify-center flex-col">
       <img
@@ -10,7 +10,7 @@ const Loader = () => {
         className="w-[100px] h-[100px] object-contain"
       />
       <p className="mt-[20px] text-white font-epilogue font-bold text-[20px] text-center">
-        Transaction is in progress <br/>
+        {text}<br/>
         Please wait...
       </p>
     </div>

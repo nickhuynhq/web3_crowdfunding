@@ -8,7 +8,7 @@ import { thirdweb } from "../assets";
 
 const CampaignDetails = () => {
   const { state } = useLocation();
-  const { donate, getUserCampaigns, getDonations, contract, address } = useStateContext();
+  const { connect, donate, getUserCampaigns, getDonations, contract, address } = useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState("");
@@ -36,7 +36,7 @@ const CampaignDetails = () => {
 
   return (
     <div>
-      {isLoading && <Loader />}
+      {isLoading && <Loader text={"Transaction in progress"}/>}
 
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
@@ -162,12 +162,18 @@ const CampaignDetails = () => {
                   you.
                 </p>
               </div>
-              <CustomButton
+              {address ? <CustomButton
                 btnType="button"
                 title="Fund Campaign"
-                styles="w-full bg-[#8c6dfd]"
+                styles="w-full bg-[#4acd8d]"
                 handleClick={handleDonate}
-              />
+              /> : <CustomButton
+              btnType="button"
+              title="Connect to Wallet"
+              styles="w-full bg-[#8c6dfd]"
+              handleClick={() => connect()}
+            />}
+              
             </div>
           </div>
         </div>

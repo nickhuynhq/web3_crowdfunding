@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { loader } from "../assets";
 import FundCard from "./FundCard";
+import Loader from "./Loader";
 
 const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
   const naviagte = useNavigate();
@@ -18,11 +19,7 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
       </h1>
       <div className="flex flex-wrap mt-[20px] gap-[26px]">
         {isLoading && (
-          <img
-            src={loader}
-            alt="loader"
-            className="w-[100px] h-[100px] object-contain"
-          />
+         <Loader text={""}/>
         )}
 
         {!isLoading && campaigns.length === 0 && (
