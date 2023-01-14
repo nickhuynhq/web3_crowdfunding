@@ -53,7 +53,7 @@ const Navbar = ({searchInput, setSearchInput}) => {
             else {
               try {
                 connect();
-                toast.success("Wallet connected successfully! 🥳");
+                toast.success("Connected to MetaMask");
               } catch (error) {
                 toast.error("Connection Error.");
                 console.log(error);

@@ -14,6 +14,7 @@ const CreateCampaign = () => {
   const [form, setForm] = useState({
     name: "",
     title: "",
+    category: "",
     description: "",
     target: "",
     deadline: "",
@@ -77,23 +78,20 @@ const CreateCampaign = () => {
         </div>
 
         <FormField
+            labelName="Category *"
+            placeholder="ie. Education"
+            inputType="text"
+            value={form.category}
+            handleChange={(e) => handleFormFieldChange("category", e)}
+          />
+       
+        <FormField
           labelName="Story"
           placeholder="Write your story"
           isTextArea
           value={form.description}
           handleChange={(e) => handleFormFieldChange("description", e)}
         />
-
-        <div className="sm:w-full md:w-[66%] flex justify-start items-center p-6 bg-[#8c6dfd] h-[120px] rounded-[10px]">
-          <img
-            src={money}
-            alt="money"
-            className="w-[40px] h-[40px] object-contain"
-          />
-          <h4 className="font-epilogue font-bold text-[25px] text-white ml-[20px]">
-            You will get 100% of the raised amount!
-          </h4>
-        </div>
 
         <div className="flex flex-wrap gap-[40px]">
           <FormField

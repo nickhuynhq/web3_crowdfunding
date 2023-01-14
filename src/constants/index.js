@@ -27,3 +27,5 @@ export const navlinks = [
     link: '/profile',
   },
 ];
+
+export const categories = ["Education", "Environment", "Humanitarian", "Technology", "Animals", "Music"]

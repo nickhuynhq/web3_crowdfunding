@@ -6,6 +6,7 @@ import { daysLeft } from "../utils";
 const FundCard = ({
   owner,
   title,
+  category,
   description,
   target,
   deadline,
@@ -14,6 +15,7 @@ const FundCard = ({
   handleClick,
 }) => {
   const remainingDays = daysLeft(deadline);
+  console.log(category)
   return (
     <div
       className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer"
@@ -32,7 +34,7 @@ const FundCard = ({
             className="w-[17px] h-[17px] object-contain"
           />
           <p className="ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808091]">
-            Category
+            {category}
           </p>
         </div>
 

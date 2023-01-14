@@ -1,4 +1,5 @@
 import React from "react";
+import { categories } from "../constants";
 
 const FormField = ({
   labelName,
@@ -24,6 +25,14 @@ const FormField = ({
           placeholder={placeholder}
           className="py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[14px] placeholder:text-[#4b5264] rounded-[10px] sm:min-w-[300px]"
         />
+      ) : inputType === "select" ? (
+        <select name="category" className="py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[14px] placeholder:text-[#4b5264] rounded-[10px] sm:min-w-[300px]">
+          {categories.map((category) => (
+            <option key={category} value={category} className="py-[15px] sm:px-[25px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[14px] placeholder:text-[#4b5264] rounded-[10px] sm:min-w-[300px]">
+              {category}
+            </option>
+          ))}
+        </select>
       ) : (
         <input
           required
