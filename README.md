@@ -2,8 +2,9 @@
 
 **🪙 Crowd3D, pronounced "crowded", is a web3 crowdfunding application using Vite.js, Tailwind CSS, & the Thirdweb SDK.**
 
-This project was created to experiment with web3 concepts and creating my own smart contracts using Hardhat👷 and Solidity! <br>
-I was also able to learn how to deploy my smart contracts and connect them to MetaMask<br>
+- This project was created to experiment with web3 concepts and creating my own smart contracts using **Hardhat**👷 and **Solidity**! <br>
+- I was also able to learn how to deploy my smart contracts and connect them to **MetaMask**<br>
+- In addition, got to express my creative UI and design using **Tailwind CSS** for quick styling implementation<br>
 
 👨‍💻 Please use this link to demo the live site!
 https://crowd3d.netlify.app/
