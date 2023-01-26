@@ -12,7 +12,7 @@ https://crowd3d.netlify.app/
 🤩 To check out my smart contract code for this project: https://github.com/nickhuynhq/web3_crowdfunding_server
 
 ## Project Screenshot
-![crowd3d](https://user-images.githubusercontent.com/71597829/214775077-22181324-11cc-4528-95a2-93e8fdbb7242.jpg)
+![crowd3d](https://user-images.githubusercontent.com/71597829/214969423-c18fd2bc-7630-43e2-87fb-758006ecbc5d.jpg)
 
 ## Project Demo
 https://user-images.githubusercontent.com/71597829/212486961-09541fe8-738f-40f0-b24b-4e63254a6639.mov
