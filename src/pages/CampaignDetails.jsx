@@ -8,7 +8,8 @@ import { thirdweb } from "../assets";
 
 const CampaignDetails = () => {
   const { state } = useLocation();
-  const { connect, donate, getUserCampaigns, getDonations, contract, address } = useStateContext();
+  const { connect, donate, getUserCampaigns, getDonations, contract, address } =
+    useStateContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState("");
@@ -21,7 +22,7 @@ const CampaignDetails = () => {
     const donations = await getDonations(state.pId);
     const userCampaignsData = await getUserCampaigns(state.owner);
     setDonators(donations);
-    setUserCampaigns(userCampaignsData.length)
+    setUserCampaigns(userCampaignsData.length);
   };
 
   const handleDonate = async () => {
@@ -36,7 +37,7 @@ const CampaignDetails = () => {
 
   return (
     <div>
-      {isLoading && <Loader text={"Transaction in progress"}/>}
+      {isLoading && <Loader text={"Transaction in progress"} />}
 
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
@@ -46,8 +47,9 @@ const CampaignDetails = () => {
             className="w-full h-[410px] object-cover rounded-xl"
           />
           <h4 className="font-epilogue font-semibold text-[12px] text-white uppercase mt-[12px]">{`Progress (${calculateBarPercentage(
-                  state.target,
-                  state.amountCollected)}%)`}</h4>
+            state.target,
+            state.amountCollected
+          )}%)`}</h4>
           <div className="relative w-full h-[16px] bg-[#3a3a43] mt-2 rounded-md">
             <div
               className="abosolute h-full bg-[#4acd8d] rounded-md"
@@ -63,7 +65,10 @@ const CampaignDetails = () => {
         </div>
 
         <div className="flex md:w-[150px] w-full flex-wrap justify-between gap-[30px]">
-          <CountBox title="Days Left" value={remainingDays} />
+          <CountBox
+            title="Days Left"
+            value={remainingDays > 0 ? remainingDays : "Finished"}
+          />
           <CountBox
             title={`Raised of ${state.target}`}
             value={state.amountCollected}
@@ -91,7 +96,9 @@ const CampaignDetails = () => {
                   {state.owner}
                 </h4>
                 <p className="mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]">
-                  {`${userCampaigns} ${userCampaigns === 1 ? `Campaign` : `Campaigns`}`}
+                  {`${userCampaigns} ${
+                    userCampaigns === 1 ? `Campaign` : `Campaigns`
+                  }`}
                 </p>
               </div>
             </div>
@@ -152,6 +159,7 @@ const CampaignDetails = () => {
                 className="w-full py-[10px] sm:px-[20px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[18px] leading-[30px] placeholder:text-[#4b5264] rounded-[10px]"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
+                disabled = {remainingDays < 0 ? true : false}
               />
               <div className="my-[20px] p-4 bg-[#13131a] rounded-[10px]">
                 <h4 className="font-epilogue font-semibold text-[14px] leading-[22px] text-white">
@@ -162,18 +170,28 @@ const CampaignDetails = () => {
                   you.
                 </p>
               </div>
-              {address ? <CustomButton
-                btnType="button"
-                title="Fund Campaign"
-                styles="w-full bg-[#4acd8d]"
-                handleClick={handleDonate}
-              /> : <CustomButton
-              btnType="button"
-              title="Connect to Wallet"
-              styles="w-full bg-[#8c6dfd]"
-              handleClick={() => connect()}
-            />}
-              
+              {remainingDays < 0 ? (
+                <CustomButton
+                  btnType="button"
+                  title="Campaign Finished"
+                  styles="w-full bg-gray-500 disabled"
+                  handleClick={() => {}}
+                />
+              ) : address ? (
+                <CustomButton
+                  btnType="button"
+                  title="Fund Campaign"
+                  styles="w-full bg-[#4acd8d]"
+                  handleClick={handleDonate}
+                />
+              ) : (
+                <CustomButton
+                  btnType="button"
+                  title="Connect to Wallet"
+                  styles="w-full bg-[#8c6dfd]"
+                  handleClick={() => connect()}
+                />
+              )}
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { sun, logout, crowded } from "../assets";
 import { navlinks } from "../constants";
@@ -62,7 +63,7 @@ const Sidebar = () => {
               key={logout}
               imgUrl={logout}
               isActive={isActive}
-              handleClick={() => disconnect()}
+              handleClick={() => disconnect() && toast.success("Logout Successful! See you next time!")}
             />
           )}
         </div>
