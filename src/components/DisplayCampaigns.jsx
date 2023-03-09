@@ -31,7 +31,7 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
         {!isLoading &&
           campaigns.length > 0 &&
           campaigns.map((campaign) => {
-            if (daysLeft(campaign.deadline) > 0) return (
+              return (
               <FundCard
                 key={campaign.pId}
                 {...campaign}

@@ -59,7 +59,7 @@ const FundCard = ({
 
           <div className="flex flex-col">
             <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
-              {remainingDays}
+              {remainingDays >= 0 ? remainingDays : "Expired"}
             </h4>
             <p className="my-[3px] font-epilogue font-normal text-[12px] leading-[12px] text-[#808191] sm:max-w-[120px] truncate">
               Days Left
