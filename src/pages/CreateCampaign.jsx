@@ -8,7 +8,7 @@ import { useStateContext } from "../context";
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
-  const { createCampaign, address } = useStateContext();
+  const { createCampaign, address, connect } = useStateContext();
   const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
