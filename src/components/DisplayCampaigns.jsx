@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import { daysLeft } from "../utils";
 import { loader } from "../assets";
 import FundCard from "./FundCard";
 import Loader from "./Loader";
@@ -12,7 +12,6 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
     naviagte(`/campaign-details/${campaign.title}`, { state: campaign });
   };
 
-  console.log(campaigns)
   return (
     <div>
       <h1 className="font-epilogue font-semibold text-[18px] text-white text-left">
@@ -20,7 +19,7 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
       </h1>
       <div className="flex flex-wrap mt-[20px] gap-[26px]">
         {isLoading && (
-         <Loader text={""}/>
+          <Loader text={""} />
         )}
 
         {!isLoading && campaigns.length === 0 && (
@@ -31,13 +30,17 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
 
         {!isLoading &&
           campaigns.length > 0 &&
-          campaigns.map((campaign) => (
-            <FundCard
-              key={campaign.pId}
-              {...campaign}
-              handleClick={() => handleNavigate(campaign)}
-            />
-          ))}
+          campaigns.map((campaign) => {
+            if (daysLeft(campaign.deadline) > 0) return (
+              <FundCard
+                key={campaign.pId}
+                {...campaign}
+                handleClick={() => handleNavigate(campaign)}
+              />
+            )
+          }
+
+          )}
       </div>
     </div>
   );
