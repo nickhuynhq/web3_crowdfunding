@@ -7,7 +7,7 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
 
-  const { address, contract, getUserCampaigns, connect} = useStateContext();
+  const { address, contract, getUserCampaigns, connect } = useStateContext();
   const userAddress = address;
 
   const fetchCampaigns = async () => {
@@ -23,19 +23,21 @@ const Profile = () => {
 
   return (
     <div className="h-full w-full">
-      {address ? (<DisplayCampaigns
-        title="My Campaigns"
-        isLoading={isLoading}
-        campaigns={campaigns}
-      />) : (
-        <div className="bg-[#1c1c24] flex justify-center items-center flex-col h-3/4 rounded-[10px] sm:p-10 p-4">
-           <h1 className="font-epilogue font-bold sm:text-[25px] md:text-3xl text-white mb-6">
+      {address ? (
+        <DisplayCampaigns
+          title="My Campaigns"
+          isLoading={isLoading}
+          campaigns={campaigns}
+        />
+      ) : (
+        <div className="bg-[#1c1c24] flex justify-center items-center flex-col min-h-[80vh] rounded-[10px] sm:p-10 p-4">
+          <h1 className="font-epilogue font-bold sm:text-[25px] md:text-3xl text-white mb-6">
             Please Connect your Wallet to view your Profile
           </h1>
           <CustomButton
             btnType="button"
             title={address ? "Create a campaign" : "Connect"}
-            styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
+            styles={`${address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"} w-[180px] `}
             handleClick={() => {
               if (address) navigate("create-campaign");
               else connect();
@@ -43,7 +45,6 @@ const Profile = () => {
           />
         </div>
       )}
-      
     </div>
   );
 };

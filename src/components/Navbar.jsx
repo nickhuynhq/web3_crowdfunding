@@ -6,7 +6,7 @@ import { navlinks } from "../constants";
 import { useStateContext } from "../context";
 import toast from "react-hot-toast";
 
-const Navbar = ({searchInput, setSearchInput}) => {
+const Navbar = ({ searchInput, setSearchInput }) => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
@@ -14,8 +14,8 @@ const Navbar = ({searchInput, setSearchInput}) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearchInput(e.target.search.value)
-    e.target.search.value = ""
+    setSearchInput(e.target.search.value);
+    e.target.search.value = "";
   };
 
   return (
@@ -62,16 +62,17 @@ const Navbar = ({searchInput, setSearchInput}) => {
           }}
         />
 
-        {address && <Link to="/profile">
-          <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-            <img
-              src={thirdweb}
-              alt="user"
-              className="w-[60%] h-[60%] object-contain"
-            />
-          </div>
-        </Link>}
-        
+        {address && (
+          <Link to="/profile">
+            <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
+              <img
+                src={thirdweb}
+                alt="user"
+                className="w-[60%] h-[60%] object-contain"
+              />
+            </div>
+          </Link>
+        )}
       </div>
 
       {/* Small Screen Navigation */}
