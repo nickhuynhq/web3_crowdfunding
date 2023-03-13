@@ -48,7 +48,7 @@ const CreateCampaign = () => {
   };
 
   return (
-    <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4">
+    <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] min-h-[80vh] w-full sm:p-10 p-4">
       {isLoading && <Loader />}
 
       {address ? (
@@ -136,7 +136,7 @@ const CreateCampaign = () => {
           <CustomButton
             btnType="button"
             title={address ? "Create a campaign" : "Connect"}
-            styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
+            styles={`${address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"} w-[180px] `}
             handleClick={() => {
               if (address) navigate("create-campaign");
               else connect();
