@@ -12,6 +12,5 @@ export default defineConfig({
     rollupOptions: {
       external: ["@safe-globalThis/safe-ethers-adapters"],
     },
-  }
-
+  },
 });
