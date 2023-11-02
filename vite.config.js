@@ -20,6 +20,7 @@ export default defineConfig({
       }
       return globalVariable;
     })(),
+
     "process.env": {},
   },
   build: {
