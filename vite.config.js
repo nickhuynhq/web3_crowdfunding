@@ -8,4 +8,7 @@ export default defineConfig({
     global: "globalThis",
     "process.env": {},
   },
+  build:{
+    outDir: "build"
+  }
 });
