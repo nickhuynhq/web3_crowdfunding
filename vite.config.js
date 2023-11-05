@@ -11,7 +11,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: [
-        '@safe-globalThis/safe-ethers-adapters',
+        '@safe-global/safe-ethers-adapters',
         // Add any other external modules here
       ],
     },
